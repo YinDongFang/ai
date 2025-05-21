@@ -16,24 +16,15 @@ export function Conversation({ messages, className }: ConversationProps) {
         const align = message.role === "user" ? "right" : "left";
         const avatar =
           message.role === "user" ? <Avatar.User /> : <Avatar.Assistant />;
-        if (message.thinking)
-          return (
-            <Thinking
-              key={message.id}
-              message={message}
-              align={align}
-              avatar={avatar}
-            />
-          );
-        else
-          return (
-            <Message
-              key={message.id}
-              message={message}
-              align={align}
-              avatar={avatar}
-            />
-          );
+
+        return (
+          <Message
+            key={message.id}
+            message={message}
+            align={align}
+            avatar={avatar}
+          />
+        );
       })}
     </div>
   );

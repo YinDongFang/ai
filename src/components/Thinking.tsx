@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { Bubble } from "./Bubble";
-import { Message, MessageProps } from "./Message";
+import { MessageProps } from "./Message";
 import { Markdown } from "./Markdown";
 
 export function Thinking(props: MessageProps) {
   const [collapsed, setCollapsed] = useState(false);
 
-  const content = (
+  return (
     <div className="flex flex-col gap-2 items-start">
       <span
         role="button"
@@ -20,11 +19,6 @@ export function Thinking(props: MessageProps) {
           <Markdown>{props.message.thinking!}</Markdown>
         </div>
       )}
-      <div className="pl-2">
-        <Markdown>{props.message.content!}</Markdown>
-      </div>
     </div>
   );
-
-  return <Message {...props} render={() => <Bubble>{content}</Bubble>} />;
 }

@@ -1,6 +1,7 @@
 import { useXAgent, Sender, XRequest, useXChat, Bubble } from "@ant-design/x";
 import { Avatar } from "./Avatar";
 import { Conversation } from "./components/Conversation";
+import { AssistantMessageContent, parseAssistantMessage } from "./utils/parseAssistantMessage";
 
 const prompt = `You are Cline, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.
 
@@ -199,6 +200,7 @@ interface Message {
   content: string;
   system?: string;
   thinking?: string;
+  blocks?: AssistantMessageContent[];
   role: "user" | "assistant" | "system";
 }
 
@@ -246,8 +248,13 @@ export default function App() {
       const data = JSON.parse(chunk.data);
       if (!data) return message;
       const { content, reasoning_content } = data.choices[0].delta;
-      if (content !== null) message.content += content;
-      if (reasoning_content !== null) message.thinking += reasoning_content;
+      if (reasoning_content !== null) {
+        message.thinking += reasoning_content;
+      }
+      if (content !== null) {
+        message.content += content;
+        message.blocks = parseAssistantMessage(message.content);
+      }
       return message;
     },
   });

@@ -1,9 +1,14 @@
 import { Bubble } from "./Bubble";
+import { Thinking } from "./Thinking";
+import { Blocks } from "./Blocks";
+import { AssistantMessageContent } from "../utils/parseAssistantMessage";
+import { Markdown } from "./Markdown";
 
 export interface MessageData {
   id: string;
   content: string;
   thinking?: string;
+  blocks?: AssistantMessageContent[];
   role: "user" | "assistant" | "system";
 }
 
@@ -15,7 +20,18 @@ export interface MessageProps {
 }
 
 const defaultRender = (message: MessageData) => {
-  return <Bubble>{message.content}</Bubble>;
+  return (
+    <Bubble>
+      <div className="flex flex-col gap-2 items-start">
+        {message.thinking && <Thinking message={message} />}
+        {message.blocks?.length ? (
+          <Blocks blocks={message.blocks} />
+        ) : (
+          <Markdown>{message.content}</Markdown>
+        )}
+      </div>
+    </Bubble>
+  );
 };
 
 export function Message(props: MessageProps) {
