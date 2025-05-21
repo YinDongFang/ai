@@ -283,26 +283,6 @@ export default function App() {
     <div className="flex flex-col h-full p-8 gap-4">
       <div className="flex-1 flex justify-stretch overflow-hidden">
         <Conversation className="flex-1" messages={items} />
-        <Bubble.List
-          className="flex-1"
-          items={items}
-          roles={{
-            user: {
-              placement: "end",
-              avatar: {
-                icon: <Avatar.User />,
-                style: { border: "none", background: "none" },
-              },
-            },
-            assistant: {
-              placement: "start",
-              avatar: {
-                icon: <Avatar.Assistant />,
-                style: { border: "none", background: "#95bdd6" },
-              },
-            },
-          }}
-        />
       </div>
       <Sender onSubmit={request} />
     </div>

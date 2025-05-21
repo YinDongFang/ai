@@ -21,7 +21,7 @@ export interface MessageProps {
 
 const defaultRender = (message: MessageData) => {
   return (
-    <Bubble>
+    <Bubble className="max-w-[calc(100%-90px)]">
       <div className="flex flex-col gap-2 items-start">
         {message.thinking && <Thinking message={message} />}
         {message.blocks?.length ? (
@@ -51,7 +51,7 @@ export function Message(props: MessageProps) {
           {avatar}
         </div>
       )}
-      <div>{render(message)}</div>
+      {render(message)}
     </div>
   );
 }
