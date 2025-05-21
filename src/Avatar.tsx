@@ -3,9 +3,9 @@ import User from "./user.svg";
 
 export const Avatar = {
   Assistant: function AssistantAvatar() {
-    return <img src={Assistant} alt="assistant" />;
+    return <img className="w-full h-full bg-[#95bdd6]" src={Assistant} alt="assistant" />;
   },
   User: function UserAvatar() {
-    return <img src={User} alt="user" />;
+    return <img className="w-full h-full" src={User} alt="user" />;
   },
 };
