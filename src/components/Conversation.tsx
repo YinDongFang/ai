@@ -1,10 +1,10 @@
 import { Avatar } from "../Avatar";
 import { Message, MessageData } from "./Message";
-import { Thinking } from "./Thinking";
+import { ToolMessage } from "./ToolMessage";
 
 interface ConversationProps {
   className?: string;
-  messages: MessageData[];
+  messages: (MessageData & { id: string })[];
 }
 
 export function Conversation({ messages, className }: ConversationProps) {
@@ -13,9 +13,25 @@ export function Conversation({ messages, className }: ConversationProps) {
       className={`flex flex-col gap-4 overflow-y-auto text-sm text-gray-800 ${className}`}
     >
       {messages.map((message) => {
-        const align = message.role === "user" ? "right" : "left";
-        const avatar =
-          message.role === "user" ? <Avatar.User /> : <Avatar.Assistant />;
+        const { avatar, align } = (
+          {
+            user: { avatar: <Avatar.User />, align: "right" },
+            assistant: { avatar: <Avatar.Assistant />, align: "left" },
+            system: { avatar: <Avatar.Assistant />, align: "center" },
+            tool: { avatar: <Avatar.Api />, align: "right" },
+          } as const
+        )[message.role];
+
+        if (message.role === "tool") {
+          return (
+            <ToolMessage
+              align="right"
+              avatar={avatar}
+              key={message.id}
+              message={message}
+            />
+          );
+        }
 
         return (
           <Message

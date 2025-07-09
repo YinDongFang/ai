@@ -54,7 +54,6 @@ export function parseAssistantMessage(
   const contentBlocks: AssistantMessageContent[] = [];
   let currentTextContentStart = 0; // Index where the current text block started
   let currentTextContent: TextContent | undefined = undefined;
-  let currentToolUseStart = 0; // Index *after* the opening tag of the current tool use
   let currentToolUse: ToolUse | undefined = undefined;
   let currentParamValueStart = 0; // Index *after* the opening tag of the current param
   let currentParamName: ToolParamName | undefined = undefined;
@@ -191,7 +190,6 @@ export function parseAssistantMessage(
             params: {},
             partial: true, // Assume partial until closing tag is found
           };
-          currentToolUseStart = currentCharIndex + 1; // Tool content starts after the opening tag
           startedNewTool = true;
           break;
         }

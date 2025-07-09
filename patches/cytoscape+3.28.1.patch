@@ -1,0 +1,986 @@
+diff --git a/node_modules/cytoscape/dist/cytoscape.cjs.js b/node_modules/cytoscape/dist/cytoscape.cjs.js
+index 1049107..bd6bf80 100644
+--- a/node_modules/cytoscape/dist/cytoscape.cjs.js
++++ b/node_modules/cytoscape/dist/cytoscape.cjs.js
+@@ -28,7 +28,7 @@ var get = require('lodash/get');
+ var set = require('lodash/set');
+ var toPath = require('lodash/toPath');
+ 
+-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
++function _interopDefaultLegacy(e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+ 
+ var debounce__default = /*#__PURE__*/_interopDefaultLegacy(debounce);
+ var Heap__default = /*#__PURE__*/_interopDefaultLegacy(Heap);
+@@ -133,7 +133,7 @@ var navigator = _window ? _window.navigator : null;
+ _window ? _window.document : null;
+ var typeofstr = _typeof('');
+ var typeofobj = _typeof({});
+-var typeoffn = _typeof(function () {});
++var typeoffn = _typeof(function () { });
+ var typeofhtmlele = typeof HTMLElement === "undefined" ? "undefined" : _typeof(HTMLElement);
+ var instanceStr = function instanceStr(obj) {
+   return obj && obj.instanceString && fn$6(obj.instanceString) ? obj.instanceString() : null;
+@@ -670,7 +670,7 @@ var hashIterableInts = function hashIterableInts(iterator) {
+   // sdbm/string-hash
+   var hash = seed;
+   var entry;
+-  for (;;) {
++  for (; ;) {
+     entry = iterator.next();
+     if (entry.done) {
+       break;
+@@ -767,7 +767,7 @@ var falsify = function falsify() {
+ var zeroify = function zeroify() {
+   return 0;
+ };
+-var noop$1 = function noop() {};
++var noop$1 = function noop() { };
+ var error = function error(msg) {
+   throw new Error(msg);
+ };
+@@ -815,20 +815,20 @@ var copyArray = function copyArray(arr) {
+ };
+ var uuid = function uuid(a, b /* placeholders */) {
+   for (
+-  // loop :)
+-  b = a = '';
+-  // b - result , a - numeric letiable
+-  a++ < 36;
+-  //
+-  b += a * 51 & 52 // if "a" is not 9 or 14 or 19 or 24
+-  ?
+-  //  return a random number or 4
+-  (a ^ 15 // if "a" is not 15
+-  ?
+-  // generate a random number from 0 to 15
+-  8 ^ Math.random() * (a ^ 20 ? 16 : 4) // unless "a" is 20, in which case a random number from 8 to 11
+-  : 4 //  otherwise 4
+-  ).toString(16) : '-' //  in other cases (if "a" is 9,14,19,24) insert "-"
++    // loop :)
++    b = a = '';
++    // b - result , a - numeric letiable
++    a++ < 36;
++    //
++    b += a * 51 & 52 // if "a" is not 9 or 14 or 19 or 24
++      ?
++      //  return a random number or 4
++      (a ^ 15 // if "a" is not 15
++        ?
++        // generate a random number from 0 to 15
++        8 ^ Math.random() * (a ^ 20 ? 16 : 4) // unless "a" is 20, in which case a random number from 8 to 11
++        : 4 //  otherwise 4
++      ).toString(16) : '-' //  in other cases (if "a" is 9,14,19,24) insert "-"
+   ) {
+   }
+   return b;
+@@ -923,7 +923,7 @@ var Map$1 = typeof Map !== 'undefined' ? Map : ObjectMap;
+ 
+ /* global Set */
+ 
+-var undef = "undefined" ;
++var undef = "undefined";
+ var ObjectSet = /*#__PURE__*/function () {
+   function ObjectSet(arrayOrObjectSet) {
+     _classCallCheck(this, ObjectSet);
+@@ -1170,7 +1170,7 @@ var defineSearch = function defineSearch(params) {
+       directed = options.directed;
+     }
+     directed = arguments.length === 2 && !fn$6(fn) ? fn : directed;
+-    fn = fn$6(fn) ? fn : function () {};
++    fn = fn$6(fn) ? fn : function () { };
+     var cy = this._private.cy;
+     var v = roots = string(roots) ? this.filter(roots) : roots;
+     var Q = [];
+@@ -1507,7 +1507,7 @@ var elesfn$s = {
+         var pathNode = goal;
+         var pathNodeId = tid;
+         var pathEdge = cameFromEdge[pathNodeId];
+-        for (;;) {
++        for (; ;) {
+           path.unshift(pathNode);
+           if (pathEdge != null) {
+             path.unshift(pathEdge);
+@@ -1778,7 +1778,7 @@ var elesfn$q = {
+       var end = getNodeFromTo(to);
+       var path = [];
+       var node = end;
+-      for (;;) {
++      for (; ;) {
+         if (node == null) {
+           return _this.spawn();
+         }
+@@ -2710,7 +2710,7 @@ var pointInsidePolygonPoints = function pointInsidePolygonPoints(x, y, points) {
+       x2 = points[(i + 1 - points.length / 2) * 2];
+       y2 = points[(i + 1 - points.length / 2) * 2 + 1];
+     }
+-    if (x1 == x && x2 == x) ; else if (x1 >= x && x >= x2 || x1 <= x && x <= x2) {
++    if (x1 == x && x2 == x); else if (x1 >= x && x >= x2 || x1 <= x && x <= x2) {
+       y3 = (x - x1) / (x2 - x1) * (y2 - y1) + y1;
+       if (y3 > y) {
+         up++;
+@@ -3724,10 +3724,10 @@ var defaults$c = defaults$g({
+   maxIterations: 20,
+   // maximum number of iterations of the MCL algorithm in a single run
+   attributes: [
+-  // attributes/features used to group nodes, ie. similarity values between nodes
+-  function (edge) {
+-    return 1;
+-  }]
++    // attributes/features used to group nodes, ie. similarity values between nodes
++    function (edge) {
++      return 1;
++    }]
+ });
+ /* eslint-enable */
+ 
+@@ -3959,7 +3959,7 @@ var distances = {
+ // in case the user accidentally doesn't use camel case
+ distances['squared-euclidean'] = distances['squaredEuclidean'];
+ distances['squaredeuclidean'] = distances['squaredEuclidean'];
+-function clusteringDistance (method, length, getP, getQ, nodeP, nodeQ) {
++function clusteringDistance(method, length, getP, getQ, nodeP, nodeQ) {
+   var impl;
+   if (fn$6(method)) {
+     impl = method;
+@@ -4188,7 +4188,7 @@ var kMedoids = function kMedoids(options) {
+ 
+   // Step 1: Initialize k medoids
+   if (opts.testMode) {
+-    if (typeof opts.testCentroids === 'number') ; else if (_typeof(opts.testCentroids) === 'object') {
++    if (typeof opts.testCentroids === 'number'); else if (_typeof(opts.testCentroids) === 'object') {
+       medoids = opts.testCentroids;
+     } else {
+       medoids = randomMedoids(nodes, opts.k);
+@@ -4467,7 +4467,7 @@ var mergeClosest = function mergeClosest(clusters, index, dists, mins, opts) {
+     } else if (opts.linkage === 'mean') {
+       dist = (dists[c1.key][cur.key] * c1.size + dists[c2.key][cur.key] * c2.size) / (c1.size + c2.size);
+     } else {
+-      if (opts.mode === 'dendrogram') dist = getDist(cur.value, c1.value);else dist = getDist(cur.value[0], c1.value[0]);
++      if (opts.mode === 'dendrogram') dist = getDist(cur.value, c1.value); else dist = getDist(cur.value[0], c1.value[0]);
+     }
+     dists[c1.key][cur.key] = dists[cur.key][c1.key] = dist; // distance matrix is symmetric
+   }
+@@ -4960,9 +4960,9 @@ var elesfn$k = {
+           var d1 = ind - outd;
+           var d2 = outd - ind;
+           if (d1 == 1) {
+-            if (oddIn) dflag = true;else oddIn = id;
++            if (oddIn) dflag = true; else oddIn = id;
+           } else if (d2 == 1) {
+-            if (oddOut) dflag = true;else oddOut = id;
++            if (oddOut) dflag = true; else oddOut = id;
+           } else if (d2 > 1 || d1 > 1) {
+             dflag = true;
+           }
+@@ -4980,7 +4980,7 @@ var elesfn$k = {
+         if (ele.isNode()) {
+           var d = ele.degree(true);
+           if (d % 2) {
+-            if (!oddIn) oddIn = id;else if (!oddOut) oddOut = id;else dflag = true;
++            if (!oddIn) oddIn = id; else if (!oddOut) oddOut = id; else dflag = true;
+           }
+           nodes[id] = [];
+           ele.connectedEdges().forEach(function (e) {
+@@ -4995,7 +4995,7 @@ var elesfn$k = {
+       found: false,
+       trail: undefined
+     };
+-    if (dflag) return result;else if (oddOut && oddIn) {
++    if (dflag) return result; else if (oddOut && oddIn) {
+       if (directed) {
+         if (startVertex && oddOut != startVertex) {
+           return result;
+@@ -5189,7 +5189,7 @@ var tarjanStronglyConnected = function tarjanStronglyConnected() {
+     });
+     if (nodes[sourceNodeId].index === nodes[sourceNodeId].low) {
+       var componentNodes = eles.spawn();
+-      for (;;) {
++      for (; ;) {
+         var nodeId = stack.pop();
+         componentNodes.merge(eles.getElementById(nodeId));
+         nodes[nodeId].low = nodes[sourceNodeId].index;
+@@ -5294,7 +5294,7 @@ var deliver = function deliver(curr, state, name, value) {
+ 
+ /*  execute all handlers  */
+ var execute = function execute(curr) {
+-  if (curr.state === STATE_FULFILLED) execute_handlers(curr, 'onFulfilled', curr.fulfillValue);else if (curr.state === STATE_REJECTED) execute_handlers(curr, 'onRejected', curr.rejectReason);
++  if (curr.state === STATE_FULFILLED) execute_handlers(curr, 'onFulfilled', curr.fulfillValue); else if (curr.state === STATE_REJECTED) execute_handlers(curr, 'onRejected', curr.rejectReason);
+ };
+ 
+ /*  execute particular set of handlers  */
+@@ -5315,7 +5315,7 @@ var execute_handlers = function execute_handlers(curr, name, value) {
+   };
+ 
+   /*  execute procedure asynchronously  */ /*  [Promises/A+ 2.2.4, 3.1]  */
+-  if (typeof setImmediate === 'function') setImmediate(func);else setTimeout(func, 0);
++  if (typeof setImmediate === 'function') setImmediate(func); else setTimeout(func, 0);
+ };
+ 
+ /*  generate a resolver function  */
+@@ -5362,17 +5362,17 @@ var resolve = function resolve(promise, x) {
+     try {
+       /*  call retrieved "then" method */ /*  [Promises/A+ 2.3.3.3]  */
+       then.call(x, /*  resolvePromise  */ /*  [Promises/A+ 2.3.3.3.1]  */
+-      function (y) {
+-        if (resolved) return;
+-        resolved = true; /*  [Promises/A+ 2.3.3.3.3]  */
+-        if (y === x) /*  [Promises/A+ 3.6]  */
+-          promise.reject(new TypeError('circular thenable chain'));else resolve(promise, y);
+-      }, /*  rejectPromise  */ /*  [Promises/A+ 2.3.3.3.2]  */
+-      function (r) {
+-        if (resolved) return;
+-        resolved = true; /*  [Promises/A+ 2.3.3.3.3]  */
+-        promise.reject(r);
+-      });
++        function (y) {
++          if (resolved) return;
++          resolved = true; /*  [Promises/A+ 2.3.3.3.3]  */
++          if (y === x) /*  [Promises/A+ 3.6]  */
++            promise.reject(new TypeError('circular thenable chain')); else resolve(promise, y);
++        }, /*  rejectPromise  */ /*  [Promises/A+ 2.3.3.3.2]  */
++        function (r) {
++          if (resolved) return;
++          resolved = true; /*  [Promises/A+ 2.3.3.3.3]  */
++          promise.reject(r);
++        });
+     } catch (e) {
+       if (!resolved) /*  [Promises/A+ 2.3.3.3.3]  */
+         promise.reject(e); /*  [Promises/A+ 2.3.3.3.4]  */
+@@ -5868,9 +5868,9 @@ var define$2 = {
+       immutableKeys: {},
+       // key => true if immutable
+       updateStyle: false,
+-      beforeGet: function beforeGet(self) {},
+-      beforeSet: function beforeSet(self, obj) {},
+-      onSet: function onSet(self) {},
++      beforeGet: function beforeGet(self) { },
++      beforeSet: function beforeSet(self, obj) { },
++      onSet: function onSet(self) { },
+       canSet: function canSet(self) {
+         return true;
+       }
+@@ -6970,7 +6970,7 @@ var parse = function parse(selector) {
+   self.length = 1;
+   remaining = consumeWhitespace(remaining); // get rid of leading whitespace
+ 
+-  for (;;) {
++  for (; ;) {
+     var exprInfo = consumeExpr(remaining);
+     if (exprInfo.expr == null) {
+       warn('The selector `' + selector + '`is invalid');
+@@ -7268,7 +7268,7 @@ match[Type.DATA_BOOL] = function (check, ele) {
+ };
+ match[Type.DATA_EXIST] = function (check, ele) {
+   var field = check.field;
+-    check.operator;
++  check.operator;
+   return existCmp(data$1(ele, field));
+ };
+ match[Type.UNDIRECTED_EDGE] = function (check, ele) {
+@@ -7377,7 +7377,7 @@ var Selector = function Selector(selector) {
+   this.compoundCount = 0;
+   this.edgeCount = 0;
+   this.length = 0;
+-  if (selector == null || string(selector) && selector.match(/^\s*$/)) ; else if (elementOrCollection(selector)) {
++  if (selector == null || string(selector) && selector.match(/^\s*$/)); else if (elementOrCollection(selector)) {
+     this.addQuery({
+       checks: [{
+         type: Type.COLLECTION,
+@@ -8552,8 +8552,8 @@ var boundingBoxImpl = function boundingBoxImpl(ele, options) {
+   };
+   var displayed = !styleEnabled || isDisplayed(ele)
+ 
+-  // must take into account connected nodes b/c of implicit edge hiding on display:none node
+-  && (!isEdge || isDisplayed(ele.source()) && isDisplayed(ele.target()));
++    // must take into account connected nodes b/c of implicit edge hiding on display:none node
++    && (!isEdge || isDisplayed(ele.source()) && isDisplayed(ele.target()));
+   if (displayed) {
+     // displayed suffices, since we will find zero area eles anyway
+     var overlayOpacity = 0;
+@@ -9278,14 +9278,14 @@ var defaults$8 = {
+     return true;
+   },
+   addEventFields: function addEventFields( /*context, evt*/
+-  ) {},
++  ) { },
+   callbackContext: function callbackContext(context /*, listener, eventObj*/) {
+     return context;
+   },
+   beforeEmit: function beforeEmit( /* context, listener, eventObj */
+-  ) {},
++  ) { },
+   afterEmit: function afterEmit( /* context, listener, eventObj */
+-  ) {},
++  ) { },
+   bubble: function bubble( /*context*/
+   ) {
+     return false;
+@@ -10081,7 +10081,7 @@ var elesfn$6 = {
+ 
+ elesfn$6.each = elesfn$6.forEach;
+ var defineSymbolIterator = function defineSymbolIterator() {
+-  var typeofUndef = "undefined" ;
++  var typeofUndef = "undefined";
+   var isIteratorSupported = (typeof Symbol === "undefined" ? "undefined" : _typeof(Symbol)) != typeofUndef && _typeof(Symbol.iterator) != typeofUndef; // eslint-disable-line no-undef
+ 
+   if (isIteratorSupported) {
+@@ -10859,7 +10859,7 @@ var defineDagAllHops = function defineDagAllHops(params) {
+     var eles = this;
+     var sEles = [];
+     var sElesIds = {};
+-    for (;;) {
++    for (; ;) {
+       var next = params.outgoing ? eles.outgoers() : eles.incomers();
+       if (next.length === 0) {
+         break;
+@@ -11498,7 +11498,7 @@ elesfn$1.restore = function () {
+     _ele2.clearTraversalCache();
+ 
+     // set id and validate
+-    if (!addToPool && !_private.removed) ; else if (_data3.id === undefined) {
++    if (!addToPool && !_private.removed); else if (_data3.id === undefined) {
+       _data3.id = uuid();
+     } else if (number$1(_data3.id)) {
+       _data3.id = '' + _data3.id; // now it's a string
+@@ -11932,7 +11932,7 @@ var corefn$9 = {
+     return elements;
+   },
+   remove: function remove(collection) {
+-    if (elementOrCollection(collection)) ; else if (string(collection)) {
++    if (elementOrCollection(collection)); else if (string(collection)) {
+       var selector = collection;
+       collection = this.$(selector);
+     }
+@@ -12094,9 +12094,9 @@ var generateSpringRK4 = function () {
+   }
+   function springIntegrateState(state, dt) {
+     var a = {
+-        dx: state.v,
+-        dv: springAccelerationForState(state)
+-      },
++      dx: state.v,
++      dv: springAccelerationForState(state)
++    },
+       b = springEvaluateStateWithDerivative(state, dt * 0.5, a),
+       c = springEvaluateStateWithDerivative(state, dt * 0.5, b),
+       d = springEvaluateStateWithDerivative(state, dt, c),
+@@ -12108,11 +12108,11 @@ var generateSpringRK4 = function () {
+   }
+   return function springRK4Factory(tension, friction, duration) {
+     var initState = {
+-        x: -1,
+-        v: 0,
+-        tension: null,
+-        friction: null
+-      },
++      x: -1,
++      v: 0,
++      tension: null,
++      friction: null
++    },
+       path = [0],
+       time_lapsed = 0,
+       tolerance = 1 / 10000,
+@@ -12136,7 +12136,7 @@ var generateSpringRK4 = function () {
+     } else {
+       dt = DT;
+     }
+-    for (;;) {
++    for (; ;) {
+       /* Next/step function .*/
+       last_state = springIntegrateState(last_state || initState, dt);
+       /* Store the position. */
+@@ -13087,9 +13087,9 @@ styfn$8.applyContextStyle = function (cxtMeta, cxtStyle, ele) {
+ 
+     // save cycles when a mapped context prop doesn't need to be applied
+     if (cxtProp.mapped === types.fn // context prop is function mapper
+-    && eleProp != null // some props can be null even by default (e.g. a prop that overrides another one)
+-    && eleProp.mapping != null // ele prop is a concrete value from from a mapper
+-    && eleProp.mapping.value === cxtProp.value // the current prop on the ele is a flat prop value for the function mapper
++      && eleProp != null // some props can be null even by default (e.g. a prop that overrides another one)
++      && eleProp.mapping != null // ele prop is a concrete value from from a mapper
++      && eleProp.mapping.value === cxtProp.value // the current prop on the ele is a flat prop value for the function mapper
+     ) {
+       // NB don't write to cxtProp, as it's shared among eles (stored in stylesheet)
+       var mapping = eleProp.mapping; // can write to mapping, as it's a per-ele copy
+@@ -13307,10 +13307,10 @@ styfn$8.applyParsedProperty = function (ele, parsedProp) {
+ 
+   // edge sanity checks to prevent the client from making serious mistakes
+   if (parsedProp.name === 'curve-style' && ele.isEdge() && (
+-  // loops must be bundled beziers
+-  parsedProp.value !== 'bezier' && ele.isLoop() ||
+-  // edges connected to compound nodes can not be haystacks
+-  parsedProp.value === 'haystack' && (ele.source().isParent() || ele.target().isParent()))) {
++    // loops must be bundled beziers
++    parsedProp.value !== 'bezier' && ele.isLoop() ||
++    // edges connected to compound nodes can not be haystacks
++    parsedProp.value === 'haystack' && (ele.source().isParent() || ele.target().isParent()))) {
+     prop = parsedProp = this.parse(parsedProp.name, 'bezier', propIsBypass);
+   }
+   if (prop["delete"]) {
+@@ -13647,12 +13647,13 @@ styfn$8.checkBoundsTrigger = function (ele, name, fromValue, toValue) {
+     // if the prop change makes the bb of pll bezier edges invalid,
+     // then dirty the pll edge bb cache as well
+     if (
+-    // only for beziers -- so performance of other edges isn't affected
+-    prop.triggersBoundsOfParallelBeziers && name === 'curve-style' && (fromValue === 'bezier' || toValue === 'bezier')) {
++      // only for beziers -- so performance of other edges isn't affected
++      prop.triggersBoundsOfParallelBeziers && name === 'curve-style' && (fromValue === 'bezier' || toValue === 'bezier')) {
+       ele.parallelEdges().forEach(function (pllEdge) {
+-        if (pllEdge.isBundledBezier()) {
++        // if (pllEdge.isBundledBezier()) {
++        // 直接清空bbCache缓存，避免isBundledBezier读取style时栈溢出
+           pllEdge.dirtyBoundingBoxCache();
+-        }
++        // }
+       });
+     }
+     if (prop.triggersBoundsOfConnectedEdges && name === 'display' && (fromValue === 'none' || toValue === 'none')) {
+@@ -14066,7 +14067,7 @@ styfn$3.appendFromString = function (string) {
+       blockRem = '';
+     }
+   }
+-  for (;;) {
++  for (; ;) {
+     var nothingLeftToParse = remaining.match(/^\s*$/);
+     if (nothingLeftToParse) {
+       break;
+@@ -14096,7 +14097,7 @@ styfn$3.appendFromString = function (string) {
+     var invalidBlock = false;
+     blockRem = blockStr;
+     var props = [];
+-    for (;;) {
++    for (; ;) {
+       var _nothingLeftToParse = blockRem.match(/^\s*$/);
+       if (_nothingLeftToParse) {
+         break;
+@@ -15588,7 +15589,7 @@ styfn$1.parseImpl = function (name, value, propIsBypass, propIsFlat) {
+ 
+   // check if value is mapped
+   var data, mapData;
+-  if (!valueIsString || propIsFlat || value.length < 7 || value[1] !== 'a') ; else if (value.length >= 7 && value[0] === 'd' && (data = new RegExp(types.data.regex).exec(value))) {
++  if (!valueIsString || propIsFlat || value.length < 7 || value[1] !== 'a'); else if (value.length >= 7 && value[0] === 'd' && (data = new RegExp(types.data.regex).exec(value))) {
+     if (propIsBypass) {
+       return false;
+     } // mappers not allowed in bypass
+@@ -15634,14 +15635,14 @@ styfn$1.parseImpl = function (name, value, propIsBypass, propIsFlat) {
+       var c1 = valueMin.value;
+       var c2 = valueMax.value;
+       var same = c1[0] === c2[0] // red
+-      && c1[1] === c2[1] // green
+-      && c1[2] === c2[2] // blue
+-      && (
+-      // optional alpha
+-      c1[3] === c2[3] // same alpha outright
+-      || (c1[3] == null || c1[3] === 1 // full opacity for colour 1?
+-      ) && (c2[3] == null || c2[3] === 1) // full opacity for colour 2?
+-      );
++        && c1[1] === c2[1] // green
++        && c1[2] === c2[2] // blue
++        && (
++          // optional alpha
++          c1[3] === c2[3] // same alpha outright
++          || (c1[3] == null || c1[3] === 1 // full opacity for colour 1?
++          ) && (c2[3] == null || c2[3] === 1) // full opacity for colour 2?
++        );
+ 
+       if (same) {
+         return false;
+@@ -15812,7 +15813,7 @@ styfn$1.parseImpl = function (name, value, propIsBypass, propIsFlat) {
+   } else if (type.propList) {
+     var props = [];
+     var propsStr = '' + value;
+-    if (propsStr === 'none') ; else {
++    if (propsStr === 'none'); else {
+       // go over each prop
+ 
+       var propsSplit = propsStr.split(/\s*,\s*|\s+/);
+@@ -16531,7 +16532,7 @@ var corefn$1 = {
+     return _p.sizeCache = _p.sizeCache || (container ? function () {
+       var style = cy.window().getComputedStyle(container);
+       var val = function val(name) {
+-        return parseFloat(style.getPropertyValue(name));
++        return parseFloat(style.getPropertyValue(name) || 0);
+       };
+       return {
+         width: container.clientWidth - val('padding-left') - val('padding-right'),
+@@ -16576,7 +16577,7 @@ var corefn$1 = {
+     };
+   },
+   multiClickDebounceTime: function multiClickDebounceTime(_int) {
+-    if (_int) this._private.multiClickDebounceTime = _int;else return this._private.multiClickDebounceTime;
++    if (_int) this._private.multiClickDebounceTime = _int; else return this._private.multiClickDebounceTime;
+     return this; // chaining
+   }
+ };
+@@ -16800,6 +16801,7 @@ var Core = function Core(opts) {
+         reg.readies = [];
+       } // clear b/c we've bound them all and don't want to keep it around in case a new core uses the same div etc
+ 
++      cy.onready();
+       cy.emit('ready');
+     }, options.done);
+   });
+@@ -16807,6 +16809,7 @@ var Core = function Core(opts) {
+ var corefn = Core.prototype; // short alias
+ 
+ extend(corefn, {
++  onready: function () { },
+   instanceString: function instanceString() {
+     return 'core';
+   },
+@@ -17738,9 +17741,9 @@ var DEBUG;
+  */
+ var defaults$4 = {
+   // Called on `layoutready`
+-  ready: function ready() {},
++  ready: function ready() { },
+   // Called on `layoutstop`
+-  stop: function stop() {},
++  stop: function stop() { },
+   // Whether to animate while running the layout
+   // true : Animate continuously as the layout is running
+   // false : Just show the end result
+@@ -18933,7 +18936,7 @@ var defaults$3 = {
+   // force num of rows in the grid
+   cols: undefined,
+   // force num of columns in the grid
+-  position: function position(node) {},
++  position: function position(node) { },
+   // returns { row, col } for element
+   sort: undefined,
+   // a sorting function to order the nodes; e.g. function(a, b){ return a.data('weight') - b.data('weight') }
+@@ -19158,9 +19161,9 @@ GridLayout.prototype.run = function () {
+ 
+ // default layout options
+ var defaults$2 = {
+-  ready: function ready() {},
++  ready: function ready() { },
+   // on layoutready
+-  stop: function stop() {} // on layoutstop
++  stop: function stop() { } // on layoutstop
+ };
+ 
+ // constructor
+@@ -19348,7 +19351,7 @@ function NullRenderer(options) {
+   this.notifications = 0; // for testing
+ }
+ 
+-var noop = function noop() {};
++var noop = function noop() { };
+ var throwImgErr = function throwImgErr() {
+   throw new Error('A headless instance can not render images');
+ };
+@@ -19508,8 +19511,8 @@ BRp$f.registerArrowShapes = function () {
+     baseCrossLinePts: [-0.15, -0.4,
+     // first half of the rectangle
+     -0.15, -0.4, 0.15, -0.4,
+-    // second half of the rectangle
+-    0.15, -0.4],
++      // second half of the rectangle
++      0.15, -0.4],
+     crossLinePts: function crossLinePts(size, edgeWidth) {
+       // shift points so that the distance between the cross points matches edge width
+       var p = this.baseCrossLinePts.slice();
+@@ -19639,45 +19642,13 @@ BRp$e.findNearestElements = function (x, y, interactiveElementsOnly, isTouch) {
+   var eles = r.getCachedZSortedEles();
+   var near = []; // 1 node max, 1 edge max
+   var zoom = r.cy.zoom();
+-  var hasCompounds = r.cy.hasCompoundNodes();
+   var edgeThreshold = (isTouch ? 24 : 8) / zoom;
+   var nodeThreshold = (isTouch ? 8 : 2) / zoom;
+-  var labelThreshold = (isTouch ? 8 : 2) / zoom;
+-  var minSqDist = Infinity;
+-  var nearEdge;
+-  var nearNode;
+   if (interactiveElementsOnly) {
+     eles = eles.interactive;
+   }
+-  function addEle(ele, sqDist) {
+-    if (ele.isNode()) {
+-      if (nearNode) {
+-        return; // can't replace node
+-      } else {
+-        nearNode = ele;
+-        near.push(ele);
+-      }
+-    }
+-    if (ele.isEdge() && (sqDist == null || sqDist < minSqDist)) {
+-      if (nearEdge) {
+-        // then replace existing edge
+-        // can replace only if same z-index
+-        if (nearEdge.pstyle('z-compound-depth').value === ele.pstyle('z-compound-depth').value && nearEdge.pstyle('z-compound-depth').value === ele.pstyle('z-compound-depth').value) {
+-          for (var i = 0; i < near.length; i++) {
+-            if (near[i].isEdge()) {
+-              near[i] = ele;
+-              nearEdge = ele;
+-              minSqDist = sqDist != null ? sqDist : minSqDist;
+-              break;
+-            }
+-          }
+-        }
+-      } else {
+-        near.push(ele);
+-        nearEdge = ele;
+-        minSqDist = sqDist != null ? sqDist : minSqDist;
+-      }
+-    }
++  function addEle(ele) {
++    near.push(ele);
+   }
+   function checkNode(node) {
+     var width = node.outerWidth() + 2 * nodeThreshold;
+@@ -19686,7 +19657,7 @@ BRp$e.findNearestElements = function (x, y, interactiveElementsOnly, isTouch) {
+     var hh = height / 2;
+     var pos = node.position();
+     if (pos.x - hw <= x && x <= pos.x + hw // bb check x
+-    && pos.y - hh <= y && y <= pos.y + hh // bb check y
++      && pos.y - hh <= y && y <= pos.y + hh // bb check y
+     ) {
+       var shape = r.nodeShapes[self.getNodeShape(node)];
+       if (shape.checkPoint(x, y, 0, width, height, pos.x, pos.y)) {
+@@ -19765,79 +19736,15 @@ BRp$e.findNearestElements = function (x, y, interactiveElementsOnly, isTouch) {
+         return true;
+       }
+     }
+-
+-    // for compound graphs, hitting edge may actually want a connected node instead (b/c edge may have greater z-index precedence)
+-    if (hasCompounds && near.length > 0) {
+-      checkNode(src);
+-      checkNode(tgt);
+-    }
+-  }
+-  function preprop(obj, name, pre) {
+-    return getPrefixedProperty(obj, name, pre);
+-  }
+-  function checkLabel(ele, prefix) {
+-    var _p = ele._private;
+-    var th = labelThreshold;
+-    var prefixDash;
+-    if (prefix) {
+-      prefixDash = prefix + '-';
+-    } else {
+-      prefixDash = '';
+-    }
+-    ele.boundingBox();
+-    var bb = _p.labelBounds[prefix || 'main'];
+-    var text = ele.pstyle(prefixDash + 'label').value;
+-    var eventsEnabled = ele.pstyle('text-events').strValue === 'yes';
+-    if (!eventsEnabled || !text) {
+-      return;
+-    }
+-    var lx = preprop(_p.rscratch, 'labelX', prefix);
+-    var ly = preprop(_p.rscratch, 'labelY', prefix);
+-    var theta = preprop(_p.rscratch, 'labelAngle', prefix);
+-    var ox = ele.pstyle(prefixDash + 'text-margin-x').pfValue;
+-    var oy = ele.pstyle(prefixDash + 'text-margin-y').pfValue;
+-    var lx1 = bb.x1 - th - ox; // (-ox, -oy) as bb already includes margin
+-    var lx2 = bb.x2 + th - ox; // and rotation is about (lx, ly)
+-    var ly1 = bb.y1 - th - oy;
+-    var ly2 = bb.y2 + th - oy;
+-    if (theta) {
+-      var cos = Math.cos(theta);
+-      var sin = Math.sin(theta);
+-      var rotate = function rotate(x, y) {
+-        x = x - lx;
+-        y = y - ly;
+-        return {
+-          x: x * cos - y * sin + lx,
+-          y: x * sin + y * cos + ly
+-        };
+-      };
+-      var px1y1 = rotate(lx1, ly1);
+-      var px1y2 = rotate(lx1, ly2);
+-      var px2y1 = rotate(lx2, ly1);
+-      var px2y2 = rotate(lx2, ly2);
+-      var points = [
+-      // with the margin added after the rotation is applied
+-      px1y1.x + ox, px1y1.y + oy, px2y1.x + ox, px2y1.y + oy, px2y2.x + ox, px2y2.y + oy, px1y2.x + ox, px1y2.y + oy];
+-      if (pointInsidePolygonPoints(x, y, points)) {
+-        addEle(ele);
+-        return true;
+-      }
+-    } else {
+-      // do a cheaper bb check
+-      if (inBoundingBox(bb, x, y)) {
+-        addEle(ele);
+-        return true;
+-      }
+-    }
+   }
+   for (var i = eles.length - 1; i >= 0; i--) {
+     // reverse order for precedence
+     var ele = eles[i];
+     if (ele.isNode()) {
+-      checkNode(ele) || checkLabel(ele);
++      checkNode(ele);
+     } else {
+       // then edge
+-      checkEdge(ele) || checkLabel(ele) || checkLabel(ele, 'source') || checkLabel(ele, 'target');
++      checkEdge(ele);
+     }
+   }
+   return near;
+@@ -20010,7 +19917,7 @@ BRp$d.calculateArrowAngles = function (edge) {
+   dispY *= -1;
+   if (isSegments) {
+     var pts = rs.allpts;
+-    if (pts.length / 2 % 2 === 0) ; else {
++    if (pts.length / 2 % 2 === 0); else {
+       var i2 = pts.length / 2 - 1;
+       var i3 = i2 + 2;
+       dispX = -(pts[i3] - pts[i2]);
+@@ -20344,7 +20251,7 @@ BRp$c.findTaxiPoints = function (edge, pairInfo) {
+   var sgnL = signum(pl);
+   var forcedDir = false;
+   if (!(isExplicitDir && (turnIsPercent || turnIsNegative)) // forcing in this case would cause weird growing in the opposite direction
+-  && (rawTaxiDir === DOWNWARD && pl < 0 || rawTaxiDir === UPWARD && pl > 0 || rawTaxiDir === LEFTWARD && pl > 0 || rawTaxiDir === RIGHTWARD && pl < 0)) {
++    && (rawTaxiDir === DOWNWARD && pl < 0 || rawTaxiDir === UPWARD && pl > 0 || rawTaxiDir === LEFTWARD && pl > 0 || rawTaxiDir === RIGHTWARD && pl < 0)) {
+     sgnL *= -1;
+     l = sgnL * Math.abs(l);
+     forcedDir = true;
+@@ -21234,7 +21141,7 @@ BRp$9.recalculateEdgeLabelProjections = function (edge) {
+     source: edge.pstyle('source-label').strValue,
+     target: edge.pstyle('target-label').strValue
+   };
+-  if (content.mid || content.source || content.target) ; else {
++  if (content.mid || content.source || content.target); else {
+     return; // no labels => no calcs
+   }
+ 
+@@ -21459,7 +21366,7 @@ BRp$9.getLabelText = function (ele, prefix) {
+   if (!text) {
+     return '';
+   }
+-  if (textTransform == 'none') ; else if (textTransform == 'uppercase') {
++  if (textTransform == 'none'); else if (textTransform == 'uppercase') {
+     text = text.toUpperCase();
+   } else if (textTransform == 'lowercase') {
+     text = text.toLowerCase();
+@@ -22555,7 +22462,7 @@ BRp$3.load = function () {
+               draggedElements.emit('free');
+               if (r.dragData.didDrag) {
+                 down.emit('dragfreeon');
+-                draggedElements.emit('dragfree');
++                draggedElements.emit('dragfree', { draggedEles: draggedElements, position: { x: pos[0], y: pos[1] } });
+               }
+             }
+             goIntoBoxMode();
+@@ -22589,7 +22496,7 @@ BRp$3.load = function () {
+               }
+             }
+             r.hoverData.draggingEles = true;
+-            draggedElements.silentShift(totalShift).emit('position drag');
++            draggedElements.silentShift(totalShift).emit('position drag', { position: { x: pos[0], y: pos[1] }, near, draggedEles: draggedElements });
+             r.redrawHint('drag', true);
+             r.redraw();
+           }
+@@ -22672,12 +22579,12 @@ BRp$3.load = function () {
+         y: pos[1]
+       });
+       if (!r.dragData.didDrag &&
+-      // didn't move a node around
+-      !r.hoverData.dragged &&
+-      // didn't pan
+-      !r.hoverData.selecting &&
+-      // not box selection
+-      !r.hoverData.isOverThresholdDrag // didn't move too much
++        // didn't move a node around
++        !r.hoverData.dragged &&
++        // didn't pan
++        !r.hoverData.selecting &&
++        // not box selection
++        !r.hoverData.isOverThresholdDrag // didn't move too much
+       ) {
+         triggerEvents(down, ["click", "tap", "vclick"], e, {
+           x: pos[0],
+@@ -22706,10 +22613,10 @@ BRp$3.load = function () {
+ 
+       // Deselect all elements if nothing is currently under the mouse cursor and we aren't dragging something
+       if (down == null // not mousedown on node
+-      && !r.dragData.didDrag // didn't move the node around
+-      && !r.hoverData.selecting // not box selection
+-      && !r.hoverData.dragged // didn't pan
+-      && !isMultSelKeyDown(e)) {
++        && !r.dragData.didDrag // didn't move the node around
++        && !r.hoverData.selecting // not box selection
++        && !r.hoverData.dragged // didn't pan
++        && !isMultSelKeyDown(e)) {
+         cy.$(isSelected).unselect(['tapunselect']);
+         if (draggedElements.length > 0) {
+           r.redrawHint('eles', true);
+@@ -22720,7 +22627,7 @@ BRp$3.load = function () {
+       // Single selection
+       if (near == down && !r.dragData.didDrag && !r.hoverData.selecting) {
+         if (near != null && near._private.selectable) {
+-          if (r.hoverData.dragging) ; else if (cy.selectionType() === 'additive' || multSelKeyDown) {
++          if (r.hoverData.dragging); else if (cy.selectionType() === 'additive' || multSelKeyDown) {
+             if (near.selected()) {
+               near.unselect(['tapunselect']);
+             } else {
+@@ -22782,7 +22689,7 @@ BRp$3.load = function () {
+           draggedElements.emit('free');
+           if (r.dragData.didDrag) {
+             down.emit('dragfreeon');
+-            draggedElements.emit('dragfree');
++            draggedElements.emit('dragfree', { draggedEles: draggedElements, position: { x: pos[0], y: pos[1] } });
+           }
+         }
+       }
+@@ -23024,7 +22931,7 @@ BRp$3.load = function () {
+       if (cy.boxSelectionEnabled()) {
+         e.preventDefault();
+       }
+-    } else if (e.touches[1]) ; else if (e.touches[0]) {
++    } else if (e.touches[1]); else if (e.touches[0]) {
+       var nears = r.findNearestElements(now[0], now[1], true, true);
+       var near = nears[0];
+       if (near != null) {
+@@ -23092,7 +22999,7 @@ BRp$3.load = function () {
+       clearTimeout(r.touchData.tapholdTimeout);
+       r.touchData.tapholdTimeout = setTimeout(function () {
+         if (r.touchData.singleTouchMoved === false && !r.pinching // if pinching, then taphold unselect shouldn't take effect
+-        && !r.touchData.selecting // box selection shouldn't allow taphold through
++          && !r.touchData.selecting // box selection shouldn't allow taphold through
+         ) {
+           triggerEvents(r.touchData.start, ['taphold'], e, {
+             x: now[0],
+@@ -23267,7 +23174,7 @@ BRp$3.load = function () {
+ 
+       // pinch to zoom
+     } else if (capture && e.touches[1] && !r.touchData.didSelect // don't allow box selection to degrade to pinch-to-zoom
+-    && cy.zoomingEnabled() && cy.panningEnabled() && cy.userZoomingEnabled() && cy.userPanningEnabled()) {
++      && cy.zoomingEnabled() && cy.panningEnabled() && cy.userZoomingEnabled() && cy.userPanningEnabled()) {
+       // two fingers => pinch to zoom
+       e.preventDefault();
+       r.data.bgActivePosistion = undefined;
+@@ -23329,7 +23236,7 @@ BRp$3.load = function () {
+           draggedEles.emit('free');
+           if (r.dragData.didDrag) {
+             _start.emit('dragfreeon');
+-            draggedEles.emit('dragfree');
++            draggedEles.emit('dragfree', { draggedEles, position: { x: now[0], y: now[1] } });
+           }
+         }
+         cy.viewport({
+@@ -23403,7 +23310,7 @@ BRp$3.load = function () {
+             }
+           }
+           r.hoverData.draggingEles = true;
+-          draggedEles.silentShift(totalShift).emit('position drag');
++          draggedEles.silentShift(totalShift).emit('position drag', { position: { x: pos[0], y: pos[1] }, near, draggedEles });
+           r.redrawHint('drag', true);
+           if (r.touchData.startPosition[0] == earlier[0] && r.touchData.startPosition[1] == earlier[1]) {
+             r.redrawHint('eles', true);
+@@ -23627,7 +23534,7 @@ BRp$3.load = function () {
+     if (e.touches[2]) {
+       r.data.bgActivePosistion = undefined;
+       r.redrawHint('select', true);
+-    } else if (e.touches[1]) ; else if (e.touches[0]) ; else if (!e.touches[0]) {
++    } else if (e.touches[1]); else if (e.touches[0]); else if (!e.touches[0]) {
+       r.data.bgActivePosistion = undefined;
+       r.redrawHint('select', true);
+       var draggedEles = r.dragData.touchDragEles;
+@@ -23641,7 +23548,7 @@ BRp$3.load = function () {
+           draggedEles.emit('free');
+           if (r.dragData.didDrag) {
+             start.emit('dragfreeon');
+-            draggedEles.emit('dragfree');
++            draggedEles.emit('dragfree', { draggedEles, position: { x: now[0], y: now[1] } });
+           }
+         }
+         triggerEvents(start, ['touchend', 'tapend', 'vmouseup', 'tapdragout'], e, {
+@@ -23696,7 +23603,7 @@ BRp$3.load = function () {
+ 
+       // Prepare to select the currently touched node, only if it hasn't been dragged past a certain distance
+       if (start != null && !r.dragData.didDrag // didn't drag nodes around
+-      && start._private.selectable && rdist2 < r.touchTapThreshold2 && !r.pinching // pinch to zoom should not affect selection
++        && start._private.selectable && rdist2 < r.touchTapThreshold2 && !r.pinching // pinch to zoom should not affect selection
+       ) {
+         if (cy.selectionType() === 'single') {
+           cy.$(isSelected).unmerge(start).unselect(['tapunselect']);
+@@ -24311,7 +24218,7 @@ BRp$1.startRenderLoop = function () {
+     if (r.destroyed) {
+       return;
+     }
+-    if (cy.batching()) ; else if (r.requestedFrame && !r.skipFrame) {
++    if (cy.batching()); else if (r.requestedFrame && !r.skipFrame) {
+       beforeRenderCallbacks(r, true, requestTime);
+       var startTime = performanceNow();
+       r.render(r.renderOptions);
+@@ -26610,7 +26517,7 @@ function roundRect(ctx, x, y, width, height) {
+   ctx.lineTo(x, y + radius);
+   ctx.quadraticCurveTo(x, y, x + radius, y);
+   ctx.closePath();
+-  if (stroke) ctx.stroke();else ctx.fill();
++  if (stroke) ctx.stroke(); else ctx.fill();
+ }
+ CRp$6.getTextAngle = function (ele, prefix) {
+   var theta;
+@@ -26773,7 +26680,7 @@ CRp$6.drawText = function (context, ele, prefix) {
+       var lineHeight = getPrefixedProperty(rscratch, 'labelLineHeight', prefix);
+       var halfTextW = textW / 2;
+       var justification = this.getLabelJustification(ele);
+-      if (justification === 'auto') ; else if (halign === 'left') {
++      if (justification === 'auto'); else if (halign === 'left') {
+         // auto justification : right
+         if (justification === 'left') {
+           textX += -textW;
+@@ -27358,9 +27265,9 @@ CRp$4.createGradientStyleFor = function (context, shapeStyleName, ele, fill, opa
+       gradientStyle = context.createRadialGradient(mid.x, mid.y, 0, mid.x, mid.y, Math.max(d1, d2));
+     } else {
+       var pos = usePaths ? {
+-          x: 0,
+-          y: 0
+-        } : ele.position(),
++        x: 0,
++        y: 0
++      } : ele.position(),
+         width = ele.paddedWidth(),
+         height = ele.paddedHeight();
+       gradientStyle = context.createRadialGradient(pos.x, pos.y, 0, pos.x, pos.y, Math.max(width, height));
+@@ -27372,9 +27279,9 @@ CRp$4.createGradientStyleFor = function (context, shapeStyleName, ele, fill, opa
+       gradientStyle = context.createLinearGradient(_start.x, _start.y, _end.x, _end.y);
+     } else {
+       var _pos = usePaths ? {
+-          x: 0,
+-          y: 0
+-        } : ele.position(),
++        x: 0,
++        y: 0
++      } : ele.position(),
+         _width = ele.paddedWidth(),
+         _height = ele.paddedHeight(),
+         halfWidth = _width / 2,
+@@ -27814,14 +27721,14 @@ CRp$4.render = function (options) {
+       }
+       var pxr = mbPxRatio;
+       cxt.drawImage(txt,
+-      // img
+-      0, 0,
+-      // sx, sy
+-      r.canvasWidth * pxr, r.canvasHeight * pxr,
+-      // sw, sh
+-      0, 0,
+-      // x, y
+-      r.canvasWidth, r.canvasHeight // w, h
++        // img
++        0, 0,
++        // sx, sy
++        r.canvasWidth * pxr, r.canvasHeight * pxr,
++        // sw, sh
++        0, 0,
++        // x, y
++        r.canvasWidth, r.canvasHeight // w, h
+       );
+     };
+ 
+@@ -28474,7 +28381,7 @@ CRp.getImgSmoothing = function (context) {
+ };
+ CRp.makeOffscreenCanvas = function (width, height) {
+   var canvas;
+-  if ((typeof OffscreenCanvas === "undefined" ? "undefined" : _typeof(OffscreenCanvas)) !== ("undefined" )) {
++  if ((typeof OffscreenCanvas === "undefined" ? "undefined" : _typeof(OffscreenCanvas)) !== ("undefined")) {
+     canvas = new OffscreenCanvas(width, height);
+   } else {
+     canvas = document.createElement('canvas'); // eslint-disable-line no-undef

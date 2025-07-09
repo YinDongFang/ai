@@ -5,11 +5,16 @@ import { AssistantMessageContent } from "../utils/parseAssistantMessage";
 import { Markdown } from "./Markdown";
 
 export interface MessageData {
-  id: string;
   content: string;
   thinking?: string;
   blocks?: AssistantMessageContent[];
-  role: "user" | "assistant" | "system";
+  tool?: {
+    server_name: string;
+    tool_name: string;
+    args: any;
+    result: any;
+  };
+  role: "user" | "assistant" | "system" | "tool";
 }
 
 export interface MessageProps {
@@ -21,7 +26,7 @@ export interface MessageProps {
 
 const defaultRender = (message: MessageData) => {
   return (
-    <Bubble className="max-w-[calc(100%-90px)]">
+    <Bubble className="max-w-[80%]">
       <div className="flex flex-col gap-2 items-start">
         {message.thinking && <Thinking message={message} />}
         {message.blocks?.length ? (

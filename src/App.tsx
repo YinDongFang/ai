@@ -1,7 +1,23 @@
 import { useXAgent, Sender, XRequest, useXChat, Bubble } from "@ant-design/x";
 import { Avatar } from "./Avatar";
 import { Conversation } from "./components/Conversation";
-import { AssistantMessageContent, parseAssistantMessage } from "./utils/parseAssistantMessage";
+import {
+  AssistantMessageContent,
+  parseAssistantMessage,
+} from "./utils/parseAssistantMessage";
+import { mock, ToolUseProvider } from "./ToolUseContext";
+import { MessageData } from "./components/Message";
+import { result, uniqueId } from "lodash-es";
+import {
+  CytoscapeProvider,
+  CytoscapeRender,
+  useCytoscape,
+} from "./components/Cytoscape";
+import { read } from "./cytoscape/read";
+import { useEffect, useRef } from "react";
+import { useCreation } from "ahooks";
+import cytoscape from "./cytoscape";
+import { useBaseStyle } from "./components/Cytoscape/hooks/useBaseStyle";
 
 const prompt = `You are Cline, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.
 
@@ -153,6 +169,21 @@ When a server is connected, you can use the server's tools via the \`use_mcp_too
       "$schema": "http://json-schema.org/draft-07/schema#"
     }
 
+- render_graph: Render a graph to show the relationships between nodes
+    Input Schema:
+    {
+      "type": "object",
+      "properties": {
+        "nodes": any,
+        "edges": any,
+      },
+      "required": [
+        "nodes",
+        "edges",
+      ],
+      "additionalProperties": false,
+      "$schema": "http://json-schema.org/draft-07/schema#"
+    }
 ====
  
 CAPABILITIES
@@ -192,31 +223,38 @@ You accomplish a given task iteratively, breaking it down into clear steps and w
 const { create } = XRequest({
   baseURL:
     "https://gateway.ai.cloudflare.com/v1/d778c7e39f0f4a50829cbd1e02731a31/demo-deepseek/deepseek/chat/completions",
-  dangerouslyApiKey: "Bearer sk-58b36bba42df4ba4bf00389d338bdf32",
-  model: "deepseek-reasoner",
+  dangerouslyApiKey: "Bearer sk-e27f2dfb7536445ba4686e5cfe125afe",
+  model: "deepseek-chat",
 });
-
-interface Message {
-  content: string;
-  system?: string;
-  thinking?: string;
-  blocks?: AssistantMessageContent[];
-  role: "user" | "assistant" | "system";
-}
 
 export default function App() {
   const [agent] = useXAgent<
-    Message,
-    { messages: Message[]; message: Message },
-    Message
+    MessageData,
+    { messages: MessageData[]; message: MessageData },
+    MessageData
   >({
     request: async (info, callbacks) => {
       const { messages = [] } = info;
 
-      const transformMessages = messages.map(({ content, role }, index) => {
-        if (index === 0 && role === "user") content = prompt + "\n\n" + content;
-        return { content, role };
-      });
+      const transformMessages = messages
+        .map(({ content, role }, index) => {
+          // deepseek-reasoner 不支持 system
+          if (index === 0 && role === "user") {
+            content = prompt + "\n\n" + content;
+          }
+          if (role === "user" && messages[index - 1]?.role === "tool") {
+            const { tool } = messages[index - 1];
+            content = `${tool!.server_name}.${
+              tool!.tool_name
+            } 调用结果：\n\n${JSON.stringify(
+              tool!.result,
+              null,
+              2
+            )}\n\n${content}`;
+          }
+          return { content, role: role === "assistant" ? "assistant" : "user" };
+        })
+        .filter(Boolean);
 
       try {
         create(
@@ -234,7 +272,7 @@ export default function App() {
     },
   });
 
-  const { onRequest, messages } = useXChat({
+  const { onRequest, messages, setMessages } = useXChat({
     agent,
     transformMessage: ({ originMessage, chunk }: any) => {
       const message = {
@@ -248,10 +286,10 @@ export default function App() {
       const data = JSON.parse(chunk.data);
       if (!data) return message;
       const { content, reasoning_content } = data.choices[0].delta;
-      if (reasoning_content !== null) {
+      if (typeof reasoning_content === "string") {
         message.thinking += reasoning_content;
       }
-      if (content !== null) {
+      if (typeof content === "string") {
         message.content += content;
         message.blocks = parseAssistantMessage(message.content);
       }
@@ -280,11 +318,30 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col h-full p-8 gap-4">
-      <div className="flex-1 flex justify-stretch overflow-hidden">
-        <Conversation className="flex-1" messages={items} />
+    <ToolUseProvider
+      onCallback={(tool) =>
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: uniqueId(),
+            message: {
+              tool,
+              content: `result of "${tool.server_name}.${
+                tool.tool_name
+              }":\n${JSON.stringify(tool.result)}`,
+              role: "tool",
+            },
+            status: "success",
+          },
+        ])
+      }
+    >
+      <div className="flex flex-col h-full p-8 gap-4">
+        <div className="flex-1 flex justify-stretch overflow-hidden">
+          <Conversation className="flex-1" messages={items} />
+        </div>
+        <Sender onSubmit={request} />
       </div>
-      <Sender onSubmit={request} />
-    </div>
+    </ToolUseProvider>
   );
 }
